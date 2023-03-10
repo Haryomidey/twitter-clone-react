@@ -33,3 +33,41 @@ svg{
 #three_dots{
   width: 1.4rem;
 }
+
+#world_icon{
+  width: 1.1rem;
+  fill: #1D9BF0;
+  
+}
+
+#audience_world_icon{
+  width: 1.3rem;
+}
+
+#check_icon{
+  width: 1.3rem;
+  fill: var(--light_blue);
+}
+
+#image_icon, #gif_icon, #poll_icon, #emoji_icon, #calendar_icon{
+  width: 1.9rem;
+  fill: #1D9BF0;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 6px;
+  transition: background 0.3s ease;
+}
+
+#image_icon:hover, #gif_icon:hover, #poll_icon:hover, #emoji_icon:hover, #calendar_icon:hover{
+  background: var(--icon_hover_blue);
+}
+
+#location_icon{
+  width: 1.3rem;
+  fill: #1d9cf07e;
+}
+
+.break{
+  word-wrap: break-word;
+  break-after: always;
+}

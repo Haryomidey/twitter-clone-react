@@ -4,7 +4,7 @@ import { BookmarkIcon, Communities, Explore, HomeIcon, MessageIcon, MoreIcon, No
 import MyPhoto from '../images/profileImage/My_profile.jpg';
 
 const Container = styled.div`
-  color: white;
+  color: #E7E9EA;
   border-right: 1px solid #71767b6c;
   width: 23%;
   height: 100%;
@@ -54,7 +54,13 @@ const LiContainer = styled.li`
 
 const LiText = styled.h2`
   color: white;
+  font-weight: 300;
 `;
+
+const Bold = styled.p`
+  font-weight: 600;
+`;
+
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -148,7 +154,7 @@ const LeftSection = () => {
       <Ulcontainer>
         <LiContainer>
           <HomeIcon />
-          <LiText>Home</LiText>
+          <LiText><Bold>Home</Bold></LiText>
         </LiContainer>
         <LiContainer>
           <Explore />
