@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 
 import MyPhoto from '../images/profileImage/My_profile.jpg';
-import { AudienceWorldIcon, CalendarIcon, CheckIcon, EmojiIcon, GifIcon, ImageIcon, LocationIcon, PollIcons, WorldIcon } from '../TweetIcons';
+import { AudienceWorldIcon, CalendarIcon, CheckIcon, EmojiIcon, GifIcon, ImageIcon, LocationIcon, PlusIcon, PollIcons, WorldIcon } from '../TweetIcons';
+import TweetCard from './TweetCard';
 
 
 const Container = styled.div`
@@ -96,8 +97,8 @@ const Following = styled.p`
 `;
 
 const InputSection = styled.div`
-    position: relative;
-    top: 120px;
+    // position: relative;
+    margin-top: 120px;
     padding-left: 15px;
     display: flex;
     gap: 15px;
@@ -118,7 +119,7 @@ const TweetSection = styled.div`
 `;
 
 const EveryoneWrapper = styled.div`
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
@@ -130,6 +131,10 @@ const EveryoneWrapper = styled.div`
     position: relative;
     cursor: default;
     user-select: none;
+
+    ${props => props.active && css`
+    display: flex;
+  `}
 `;
 
 const Everyone = styled.div`
@@ -219,7 +224,7 @@ const TweetInput = styled.textarea`
 
 const EveryoneReply = styled.div`
     width: 180px;
-    display: flex;
+    display: none;
     align-items: center;
     gap: 7px;
     padding: 3px 10px;
@@ -227,6 +232,10 @@ const EveryoneReply = styled.div`
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s ease;
+
+    ${props => props.active && css`
+        display: flex;
+  `}
 
     &:hover{
         background: #031018;
@@ -239,36 +248,123 @@ const EveryoneReplyIcon = styled.div`
 const EveryoneReplyText = styled.p`
     color: #1D9BF0;
     font-size: .9rem;
+    font-weight: 600;
 `;
 
 const EmojiContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid #71767b6c;
-    width: 100%;
-    min-height: 50px;
+    width: 96%;
+    height: 60px;
+    margin-top: -20px;
+    
+    ${props => props.active && css`
+        margin-top: 0;
+        border-top: 1px solid #71767b6c;
+  `}
 `;
 
 const EmojiWrapper = styled.div`
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 3px;
 `;
 const TweetButtonContainer = styled.div`
+    height: 40px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 130px;
+`;
 
+const TweetLengthContainer = styled.div`
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 30px;
+    margin-right: 10px;
+
+    ${props => props.active && css`
+        display: flex;
+  `}
+`;
+
+const TweetLength = styled.div`
+    border: 2px solid #71767b6c;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+`;
+const ShowTweetBox = styled.div`
+    width: 22px;
+    height: 22px;
+    border: 1px solid #1D9BF0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    position: relative;
+
+    &::before{
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 30px;
+        background: #71767b6c;
+        top: -5px;
+        left: -80%;
+    }
+`;
+const TweetButton = styled.button`
+    width: 80px;
+    height: 35px;
+    border: 0;
+    outline: none;
+    background: #1D9BF0;
+    border-radius: 30px;
+    margin-left: auto;
+    color: white;
+    font-weight: 600;
+    opacity: 0.6;
+`;
+
+const ShowTweetNums = styled.div`
+    width: 100%;
+    border-bottom: 1px solid #71767b6c;
+    height: 50px;
+    display: grid;
+    place-items: center;
+`;
+const ShowTweetNumsText = styled.div`
+    color: #1D9BF0;
 `;
 
 const MiddleSection = () => {
     const [audience, setAudience] = useState(false);
-
+    const [showDetails, setShowDetails] = useState(false);
+    const [tweetNums, setTweetNums] = useState(Math.floor(Math.random() * 901) + 100);
+    
     const showAudience = () => {
         setAudience(!audience)
     }
 
     const handleInputClick = () => {
-
+        setShowDetails(true)
     }
+
+    const generateRandomNum = () => {
+        return Math.floor(Math.random() * 901) + 100;
+    }
+
+    
+    useEffect(() => {
+        setTimeout(() => {
+            setTweetNums(generateRandomNum())
+        }, 12000)
+    }, [tweetNums])
 
   return (
     <Container>
@@ -292,7 +388,7 @@ const MiddleSection = () => {
         <InputSection>
             <ProfileImage src = {MyPhoto} />
             <TweetSection>
-                <EveryoneWrapper>
+                <EveryoneWrapper active={showDetails}>
                     {audience 
                     ? 
                     <ChooseAudience>
@@ -334,7 +430,7 @@ const MiddleSection = () => {
                 </EveryoneWrapper>
                 <TweetInput onClick = {handleInputClick} placeholder = "What's happening?">
                 </TweetInput>
-                <EveryoneReply>
+                <EveryoneReply active={showDetails}>
                     <EveryoneReplyIcon>
                         <WorldIcon />
                     </EveryoneReplyIcon>
@@ -342,7 +438,7 @@ const MiddleSection = () => {
                         Everyone can reply
                     </EveryoneReplyText>
                 </EveryoneReply>
-                <EmojiContainer>
+                <EmojiContainer active={showDetails}>
                     <EmojiWrapper>
                         <ImageIcon />
                         <GifIcon />
@@ -352,11 +448,27 @@ const MiddleSection = () => {
                         <LocationIcon />
                     </EmojiWrapper>
                     <TweetButtonContainer>
-                        
+                        <TweetLengthContainer active={showDetails}>
+                            <TweetLength>
+                            
+                            </TweetLength>
+                            <ShowTweetBox>
+                                <PlusIcon />
+                            </ShowTweetBox>
+                        </TweetLengthContainer>
+                        <TweetButton>
+                            Tweet
+                        </TweetButton>
                     </TweetButtonContainer>
                 </EmojiContainer>
             </TweetSection>
         </InputSection>
+        <ShowTweetNums>
+            <ShowTweetNumsText>
+                Show {tweetNums} tweets
+            </ShowTweetNumsText>
+        </ShowTweetNums>
+        <TweetCard />
     </Container>
   )
 }

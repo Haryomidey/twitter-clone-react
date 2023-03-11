@@ -181,6 +181,12 @@ const CheckIcon = () => {
     )
 }
 
+const PlusIcon = () => {
+    return (
+        <svg id ="plus_icon" viewBox="0 0 24 24" aria-hidden="true" class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz"><g><path d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"></path></g></svg>
+    )
+}
+
 export {
     TwitterLogo,
     HomeIcon,
@@ -212,4 +218,5 @@ export {
     WorldIcon,
     AudienceWorldIcon,
     CheckIcon,
+    PlusIcon,
 };

@@ -50,11 +50,11 @@ svg{
 }
 
 #image_icon, #gif_icon, #poll_icon, #emoji_icon, #calendar_icon{
-  width: 1.9rem;
+  width: 2.3rem;
   fill: #1D9BF0;
   cursor: pointer;
   border-radius: 50%;
-  padding: 6px;
+  padding: 8px;
   transition: background 0.3s ease;
 }
 
@@ -63,11 +63,12 @@ svg{
 }
 
 #location_icon{
-  width: 1.3rem;
+  width: 2.3rem;
   fill: #1d9cf07e;
+  padding: 8px;
 }
 
-.break{
-  word-wrap: break-word;
-  break-after: always;
+#plus_icon{
+  width: 1.1rem;
+  fill: var(--light_blue);
 }
