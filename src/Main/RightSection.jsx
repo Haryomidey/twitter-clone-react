@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components';
 import TrendContainer from './TrendContainer';
+import WhoToFollow from './WhoToFollow';
 
 const Container = styled.div`
-  min-height: 100vh;
+  min-height: 100vh !important;
   width: 40%;
 `;
 
@@ -182,6 +183,7 @@ const RightSection = () => {
       </Navbar>
       <MainWrapper>
         <TrendContainer />
+        <WhoToFollow />
       </MainWrapper>
     </Container>
   )

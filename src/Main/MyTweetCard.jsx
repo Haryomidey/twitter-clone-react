@@ -143,12 +143,6 @@ const TweetImageWrapper = styled.div`
   height: 100%;
 `;
 
-const TweetImage = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-`;
-
 const TweetActivity = styled.div`
   display: flex;
   align-items: center;

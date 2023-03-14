@@ -11,16 +11,12 @@ import TweetBox from './TweetBox';
 
 const Container = styled.div`
     width: 60%;
-    min-height: 100vh;
+    // min-height: 100% !important;
     border-right: 1px solid #71767b6c;
-    position: relative;
     color: #E7E9EA;
-    overflow-y: scroll;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    // background: red;
 
-    &::-webkit-scrollbar {
-    display: none;
-    }
 `;
 
 const Navbar = styled.div`

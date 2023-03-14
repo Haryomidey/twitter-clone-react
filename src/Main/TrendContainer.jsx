@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-// import { ThreeDot } from '../TweetIcons';
+import TrendsDB from '../TrendsDB';
 
 const Container = styled.div`
     width: 90%;
@@ -59,23 +59,40 @@ const TrendTweetNum = styled.div`
     margin-bottom: 4px;
 `;
 
+const ShowMore = styled.div`
+    height: 55px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    color: #1D9BF0;
+    transition: background 0.3s ease;
+    cursor: pointer;
+
+    &:hover{
+        background: #1D1F23;
+    }
+`;
+
 const TrendContainer = () => {
   return (
     <Container>
         <ContainerTitle>
             Trends for you
         </ContainerTitle>
-        <TrendsList>
-            <TrendLocationContainer>
-                <TrendLocation>
-                    Trending in Nigeria
-                </TrendLocation>
-                <ThreeDot viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"><g><path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path></g>
-                </ThreeDot>
-            </TrendLocationContainer>
-            <TrendTitle>Ayomide</TrendTitle>
-            <TrendTweetNum>5,635 Tweets</TrendTweetNum>
-        </TrendsList>
+          {TrendsDB.map(trend => (
+            <TrendsList>
+                <TrendLocationContainer>
+                    <TrendLocation>
+                        {trend.trendsLocation}
+                    </TrendLocation>
+                    <ThreeDot viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"><g><path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path></g>
+                    </ThreeDot>
+                </TrendLocationContainer>
+                <TrendTitle>{trend.trendstitle}</TrendTitle>
+                  <TrendTweetNum>{trend.trendsNum}</TrendTweetNum>
+            </TrendsList>
+        ))}
+        <ShowMore>Show more</ShowMore>
     </Container>
   )
 }

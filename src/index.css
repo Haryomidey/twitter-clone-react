@@ -183,5 +183,5 @@ svg{
   border-radius: 50%;
   transition: background 0.3s ease;
   position: relative;
-  color: rgba(0, 0, 0, 0.73);
+  color: #fffbfb7c;
 }
