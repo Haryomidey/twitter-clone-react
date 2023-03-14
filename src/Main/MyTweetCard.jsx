@@ -164,7 +164,6 @@ const MyTweetCard = ({myTweet, setMyTweet}) => {
     setMyTweet(
       myTweet.map((item) => {
         if (item.id === tweet.id) {
-          console.log(item.id, tweet.id)
           return { ...item, retweeted: !item.retweeted}
         }
         return item;
@@ -176,7 +175,6 @@ const MyTweetCard = ({myTweet, setMyTweet}) => {
     setMyTweet(
       myTweet.map((item) => {
         if (item.id === tweet.id) {
-          console.log(item.id, tweet.id)
           return { ...item, liked: !item.liked}
         }
         return item;
@@ -219,7 +217,6 @@ const MyTweetCard = ({myTweet, setMyTweet}) => {
                 {tweet.tweetContent}
               </TweetContent>
               <TweetImageWrapper>
-                {/* {tweetImage ? <TweetImage src = {tweetImage} /> : ''} */}
               </TweetImageWrapper>
               <TweetActivity>
                 <div className='comment_wrapper'>
@@ -240,7 +237,6 @@ const MyTweetCard = ({myTweet, setMyTweet}) => {
                 </div>
                 <div className='share_wrapper'>
                   <DownloadIcon />
-                  {/* <p className = "share_value"></p> */}
                 </div>
               </TweetActivity>
             </ContentSection>

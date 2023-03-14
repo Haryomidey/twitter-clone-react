@@ -307,6 +307,19 @@ const TweetLength = styled.div`
     width: 22px;
     height: 22px;
     border-radius: 50%;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        border: 2.5px solid #1D9BF0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 `;
 const ShowTweetBox = styled.div`
     width: 22px;

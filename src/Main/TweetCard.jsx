@@ -16,20 +16,19 @@ const TweetCard = () => {
     <Container>
       {TweetsDB.map(tweet => (
         <TweetCardEmpty
-        id={tweet.id}
-        tweetSource={tweet.tweetSource}
-        userImage={tweet.userImage}
-        userName={tweet.userName}
-        verified={tweet.verified}
-        userHandle={tweet.userHandle}
-        tweetTime={tweet.tweetTime}
-        tweetContent={tweet.tweetContent}
-        tweetImage={tweet.tweetImage}
-        tweetComments={tweet.tweetComments}
-        tweetRetweets={tweet.tweetRetweets}
-        tweetLikes={tweet.tweetLikes}
-        tweetViews={tweet.tweetViews}
-
+          id={tweet.id}
+          tweetSource={tweet.tweetSource}
+          userImage={tweet.userImage}
+          userName={tweet.userName}
+          verified={tweet.verified}
+          userHandle={tweet.userHandle}
+          tweetTime={tweet.tweetTime}
+          tweetContent={tweet.tweetContent}
+          tweetImage={tweet.tweetImage}
+          tweetComments={tweet.tweetComments}
+          tweetRetweets={tweet.tweetRetweets}
+          tweetLikes={tweet.tweetLikes}
+          tweetViews={tweet.tweetViews}
         />
       ))
       }

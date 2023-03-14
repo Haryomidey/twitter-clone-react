@@ -181,4 +181,5 @@ svg{
   padding: 12px;
   border-radius: 50%;
   transition: background 0.3s ease;
+  position: relative;
 }
