@@ -1,18 +1,38 @@
 import styled from 'styled-components';
+import TweetCardEmpty from './TweetCardEmpty';
+import TweetsDB from '../TweetsDB';
 
+// import { useState } from 'react';
 
-const CardComponent = styled.div`
+const Container = styled.div`
   width: 100%;
-  height: 100px;
-  border-bottom: 1px solid #71767b6c;
-  cursor: pointer;
 `;
 
 const TweetCard = () => {
-  return (
-    <CardComponent>
 
-    </CardComponent>
+  
+
+  return (
+    <Container>
+      {TweetsDB.map(tweet => (
+        <TweetCardEmpty
+        id={tweet.id}
+        tweetSource={tweet.tweetSource}
+        userImage={tweet.userImage}
+        userName={tweet.userName}
+        verified={tweet.verified}
+        userHandle={tweet.userHandle}
+        tweetTime={tweet.tweetTime}
+        tweetContent={tweet.tweetContent}
+        tweetImage={tweet.tweetImage}
+        tweetComments={tweet.tweetComments}
+        tweetRetweets={tweet.tweetRetweets}
+        tweetLikes={tweet.tweetLikes}
+        tweetViews={tweet.tweetViews}
+        />
+      ))
+      }
+    </Container>
   )
 }
 

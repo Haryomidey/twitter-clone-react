@@ -2,13 +2,14 @@
 import AbjaImage from '../src/images/profileImage/Abja_profile.jpg';
 import BarcaUniversalImage from '../src/images/profileImage/Barca_universal_profile.jpg';
 import BeksFCBImage from '../src/images/profileImage/BeksFCB_profile.jpg';
-import BrotherSilverImage from '../src/images/profileImage_profile.jpg';
+import BrotherSilverImage from '../src/images/profileImage/Brother_silver_profile.jpg';
 import DallasImage from '../src/images/profileImage/Dallas_profile.jpg';
 import FifaImage from '../src/images/profileImage/Fifa_world_cup_profile.jpg';
+
 import GaneshImage from '../src/images/profileImage/ganesh_profile.jpg';
 import MissAyoImage from '../src/images/profileImage/Miss_ayo_profile.jpg';
 import PhoenixImage from '../src/images/profileImage/Phoenix_blvk_profile.jpg';
-import RayoImage from '../src/images/profileImage/Rayo_profile_profile.jpg';
+import RayoImage from '../src/images/profileImage/Rayo_profile.jpg';
 import RonaldoImage from '../src/images/profileImage/Ronaldo_profile.jpg';
 import SirDicksonImage from '../src/images/profileImage/Sir_dickson_profile.jpg';
 import SmallieImage from '../src/images/profileImage/Smallie_profile.jpg';
@@ -28,6 +29,7 @@ import VarContent from '../src/images/contentImage/Var_content_image.jfif';
 const TweetsDB = [
     {
         id: 1,
+        tweetSource: 'Emmanuel Knows ball retweeted',
         userImage: RayoImage,
         userName: 'Faith(Rayofhope)💙',
         verified: 'no',
@@ -37,13 +39,14 @@ const TweetsDB = [
         No dull moment around them.
         How can this guy be forcing garri down my throat😭when I said it’s food I want to eat,good food oo😭😂😭.`,
         tweetImage: '',
-        tweetComment: 17,
+        tweetComments: 17,
         tweetRetweets: 12,
         tweetLikes: 345,
         tweetViews: '1,854'
     },
     {
         id: 2,
+        tweetSource: '',
         userImage: DallasImage,
         userName: '≠DALLAS VENN≠',
         verified: 'no',
@@ -58,6 +61,7 @@ const TweetsDB = [
     },
     {
         id: 3,
+        tweetSource: '',
         userImage: ZamaniImage,
         userName: '4_Real_Zamani 🇨🇲🇳🇬',
         verified: 'no',
@@ -72,6 +76,7 @@ const TweetsDB = [
     },
     {
         id: 4,
+        tweetSource: '',
         userImage: FifaImage,
         userName: 'FIFA World Cup Stats',
         verified: 'yes',
@@ -94,6 +99,7 @@ const TweetsDB = [
     },
     {
         id: 5,
+        tweetSource: '',
         userImage: AbjaImage,
         userName: 'Abja🇯🇲',
         verified: 'no',
@@ -108,6 +114,7 @@ const TweetsDB = [
     },
     {
         id: 6,
+        tweetSource: '',
         userImage: PhoenixImage,
         userName: 'Phoenix Blvck',
         verified: 'no',
@@ -125,6 +132,7 @@ const TweetsDB = [
     },
     {
         id: 7,
+        tweetSource: '',
         userImage: GaneshImage,
         userName: 'ganesh🇦🇷',
         verified: 'no',
@@ -139,6 +147,7 @@ const TweetsDB = [
     },
     {
         id: 8,
+        tweetSource: '',
         userImage: BarcaUniversalImage,
         userName: 'Barça Universal',
         verified: 'no',
@@ -153,6 +162,7 @@ const TweetsDB = [
     },
     {
         id: 9,
+        tweetSource: '',
         userImage: SirDicksonImage,
         userName: 'Sir Dickson',
         verified: 'no',
@@ -169,6 +179,7 @@ const TweetsDB = [
     },
     {
         id: 10,
+        tweetSource: '',
         userImage: BeksFCBImage,
         userName: 'BeksFCB',
         verified: 'yes',
@@ -183,6 +194,7 @@ const TweetsDB = [
     },
     {
         id: 11,
+        tweetSource: '',
         userImage: BrotherSilverImage,
         userName: 'Brother_silverr',
         verified: 'no',
@@ -197,6 +209,7 @@ const TweetsDB = [
     },
     {
         id: 12,
+        tweetSource: '',
         userImage: SmallieImage,
         userName: 'Alhaji Beardless Smallie👳🏽‍♀️',
         verified: 'no',
@@ -211,6 +224,7 @@ const TweetsDB = [
     },
     {
         id: 13,
+        tweetSource: '',
         userImage: MissAyoImage,
         userName: 'Miss.ayo.artss✭',
         verified: 'no',
@@ -225,6 +239,7 @@ const TweetsDB = [
     },
     {
         id: 14,
+        tweetSource: '',
         userImage: RonaldoImage,
         userName: 'Cristiano Ronaldo',
         verified: 'yes',
@@ -233,13 +248,14 @@ const TweetsDB = [
         tweetContent: `Disappointed with the result, but we stay focused on our season and the games ahead.💪🏼
         Thank you Al Nassr fans for your support, we know we can count on you!🙌🏼💛💙`,
         tweetImage: RonaldoContent,
-        tweetComments: 5553,
-        tweetRetweets: `${11.1}k`,
-        tweetLikes: `${78.5}k`,
-        tweetViews: '3.5m'
+        tweetComments: 55,
+        tweetRetweets: 525,
+        tweetLikes: 9032,
+        tweetViews: '321.5k'
     },
     {
         id: 15,
+        tweetSource: '',
         userImage: VarImage,
         userName: '𝐕𝐀𝐑 🌴',
         verified: '',
@@ -253,3 +269,5 @@ const TweetsDB = [
         tweetViews: '18.8k'
     }
 ]
+
+export default TweetsDB;

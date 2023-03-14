@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 import MyPhoto from '../images/profileImage/My_profile.jpg';
 import { AudienceWorldIcon, CalendarIcon, CheckIcon, EmojiIcon, GifIcon, ImageIcon, LocationIcon, PlusIcon, PollIcons, WorldIcon } from '../TweetIcons';
+import MyTweet from './MyTweet';
 import TweetCard from './TweetCard';
 
 
@@ -12,11 +13,17 @@ const Container = styled.div`
     border-right: 1px solid #71767b6c;
     position: relative;
     color: #E7E9EA;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+
+    &::-webkit-scrollbar {
+    display: none;
+    }
 `;
 
 const Navbar = styled.div`
     height: 120px;
-    width: calc(46% + 2px);
+    width: calc(45% + 5px);
     border-bottom: 1px solid #71767b6c;
     position: fixed;
     top: 0;
@@ -24,6 +31,8 @@ const Navbar = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    backdrop-filter: blur(10px);
+    z-index: 111;
 `;
 
 const PageTitle = styled.h1`
@@ -133,7 +142,7 @@ const EveryoneWrapper = styled.div`
     user-select: none;
 
     ${props => props.active && css`
-    display: flex;
+        display: flex;
   `}
 `;
 
@@ -276,7 +285,7 @@ const TweetButtonContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-left: 130px;
+    margin-left: 110px;
 `;
 
 const TweetLengthContainer = styled.div`
@@ -337,6 +346,12 @@ const ShowTweetNums = styled.div`
     height: 50px;
     display: grid;
     place-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover{
+        background: #080808;
+    }
 `;
 const ShowTweetNumsText = styled.div`
     color: #1D9BF0;
@@ -365,7 +380,6 @@ const MiddleSection = () => {
             setTweetNums(generateRandomNum())
         }, 12000)
     }, [tweetNums])
-
   return (
     <Container>
         <Navbar>
@@ -468,6 +482,7 @@ const MiddleSection = () => {
                 Show {tweetNums} tweets
             </ShowTweetNumsText>
         </ShowTweetNums>
+        <MyTweet />
         <TweetCard />
     </Container>
   )

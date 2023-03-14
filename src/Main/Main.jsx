@@ -4,10 +4,12 @@ import RightSection from './RightSection';
 
 const Container = styled.div`
   width: 77%;
-  height: 100%;
+  min-height: 100vh;
   position: relative;
+  margin-bottom: 20px;
   left: 23%;
   display: flex;
+  overflow-y: scroll;
 `;
 
 const Main = () => {

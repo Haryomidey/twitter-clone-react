@@ -31,7 +31,7 @@ svg{
 }
 
 #three_dots{
-  width: 1.4rem;
+  width: 1.1rem;
 }
 
 #world_icon{
@@ -71,4 +71,114 @@ svg{
 #plus_icon{
   width: 1.1rem;
   fill: var(--light_blue);
+  
+}
+
+.comment_wrapper, .retweet_wrapper, .like_wrapper, .views_wrapper, .share_wrapper{
+  display: flex;
+  align-items: center;
+  color: #71767B;
+  font-size: 1rem;
+}
+
+.comment_wrapper:hover .comment, .comment_wrapper:hover p{
+  fill: var(--light_blue);
+  color: var(--light_blue);
+  background: var(--icon_hover_blue);
+}
+
+.comment{
+  fill: #71767B;
+  width: 1.3rem;
+}
+
+.retweet{
+  fill: #71767B;
+  width: 1.3rem;
+}
+
+.retweet_wrapper:hover .retweet, .retweet_wrapper:hover p, .retweet_wrapper:hover .retweeted{
+  fill: var(--icon_green);
+  color: var(--icon_green);
+  background: var(--icon_hover_green);
+}
+
+.like{
+  fill: #71767B;
+  width: 1.3rem;
+}
+
+.like_wrapper:hover .like, .like_wrapper:hover p, .like_wrapper:hover .liked{
+  fill: var(--icon_red);
+  color: var(--icon_red);
+  background: var(--icon_hover_red);
+}
+
+
+.view{
+  fill: #71767B;
+  width: 1.3rem;
+}
+
+.views_wrapper:hover .view, .views_wrapper:hover p{
+  fill: var(--light_blue);
+  color: var(--light_blue);
+  background: var(--icon_hover_blue);
+}
+
+
+.share{
+  fill: #71767B;
+  width: 1.3rem;
+}
+
+.share_wrapper:hover .share, .share_wrapper:hover p{
+  fill: var(--light_blue);
+  color: var(--light_blue);
+  background: var(--icon_hover_blue);
+}
+
+.comment,
+.retweet,
+.like,
+.view,
+.share{
+  padding: 12px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  width: 2.8rem;
+}
+
+.comment_value,
+.retweet_value,
+.like_value,
+.views_value,
+.share_value{
+  background: 0 !important;
+  user-select: none;
+}
+
+.retweet_value.active{
+  color: var(--icon_green);
+}
+
+.like_value.active{
+  color: var(--icon_red);
+}
+
+
+.retweeted{
+  fill: var(--icon_green);
+  width: 2.8rem;
+  padding: 12px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.liked{
+  fill: var(--icon_red);
+  width: 2.8rem;
+  padding: 12px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
 }
