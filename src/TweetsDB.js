@@ -29,7 +29,7 @@ import VarContent from '../src/images/contentImage/Var_content_image.jfif';
 const TweetsDB = [
     {
         id: 1,
-        tweetSource: 'Emmanuel Knows ball retweeted',
+        tweetSource: '',
         userImage: RayoImage,
         userName: 'Faith(Rayofhope)💙',
         verified: 'no',
@@ -76,7 +76,7 @@ const TweetsDB = [
     },
     {
         id: 4,
-        tweetSource: '',
+        tweetSource: 'Emmanuel Knows ball retweeted',
         userImage: FifaImage,
         userName: 'FIFA World Cup Stats',
         verified: 'yes',
@@ -90,7 +90,7 @@ const TweetsDB = [
         4️⃣🇵🇱Robert Lewandowski-𝟏𝟔
         5️⃣🇦🇷Sergio Aguero-𝟏𝟔
 
-        #Messi𓃵|#CR7𓃵|#UCL`,
+        #Messi𓃵| #CR7𓃵| #UCL`,
         tweetImage: FifaContent,
         tweetLikes: 1992,
         tweetComments: 44,

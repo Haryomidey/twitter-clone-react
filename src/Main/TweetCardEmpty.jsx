@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CommentIcon, DownloadIcon, Liked, LikeIcon, Retweeted, RetweetIcon, ThreeDot, ViewsIcon } from '../TweetIcons';
+import { CommentIcon, DownloadIcon, Liked, LikeIcon, Retweeted, RetweetIcon, ViewsIcon } from '../TweetIcons';
 import { useState } from 'react';
 
 const CardComponent = styled.div`
@@ -163,11 +163,10 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
 
   const [retweetCount, setRetweetCount] = useState(tweetRetweets);
   const [likedCount, setLikedCount] = useState(tweetLikes);
-
   const handleRetweet = () => {
     if (isRetweeted) {
-      setIsRetweeted(false);
       setRetweetCount(prev => prev - 1)
+      setIsRetweeted(false);
     }
     else {
       setIsRetweeted(true);
@@ -178,6 +177,7 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
   const handleLike = () => {
     if (isLiked) {
       setIsLiked(false);
+      
       setLikedCount(prev => prev - 1)
     }
     else {
@@ -187,15 +187,19 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
   }
 
   return (
-    <CardComponent>
-      <TweetScource>
+    <CardComponent key ={id}>
+      {tweetSource ? 
+        <TweetScource>
         <TweetSourceIcon viewBox="0 0 24 24">
           <path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z" />
         </TweetSourceIcon>
         <TweetSourceText>
           {tweetSource}
         </TweetSourceText>
-      </TweetScource>
+        </TweetScource>
+        :
+        ""
+      }
       <CardSections>
         <ProfileImageContainer>
           <ProfileImage src = {userImage} />
@@ -242,7 +246,7 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
             </div>
             <div className='views_wrapper'>
               <ViewsIcon />
-                          <p className="views_value">{tweetViews}</p>
+                <p className="views_value">{tweetViews}</p>
             </div>
             <div className='share_wrapper'>
               <DownloadIcon />

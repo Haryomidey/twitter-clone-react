@@ -29,6 +29,7 @@ const TweetCard = () => {
         tweetRetweets={tweet.tweetRetweets}
         tweetLikes={tweet.tweetLikes}
         tweetViews={tweet.tweetViews}
+
         />
       ))
       }

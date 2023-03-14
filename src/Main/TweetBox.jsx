@@ -1,119 +1,40 @@
-import { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
-import { v4 as uuid } from 'uuid';
-
 import MyPhoto from '../images/profileImage/My_profile.jpg';
 import { AudienceWorldIcon, CalendarIcon, CheckIcon, EmojiIcon, GifIcon, ImageIcon, LocationIcon, PlusIcon, PollIcons, WorldIcon } from '../TweetIcons';
-import TweetCard from './TweetCard';
-import MyTweetCard from './MyTweetCard';
-import TweetBox from './TweetBox';
 
+import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
-    width: 60%;
-    min-height: 100vh;
-    border-right: 1px solid #71767b6c;
-    position: relative;
-    color: #E7E9EA;
-    overflow-y: scroll;
-    padding-bottom: 10px;
-
-    &::-webkit-scrollbar {
-    display: none;
-    }
-`;
-
-const Navbar = styled.div`
-    height: 120px;
-    width: calc(45% + 5px);
-    border-bottom: 1px solid #71767b6c;
     position: fixed;
     top: 0;
-    left: 23%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    backdrop-filter: blur(10px) brightness(100%);
-    z-index: 111;
-`;
-
-const PageTitle = styled.h1`
-    margin: 15px;
-    font-weight: 600;
-    font-size: 1.4rem;
-`;
-
-const NavbarBottomSection = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    bottom: 20px;
-    height: 60px;
-`;
-
-const ForYouWrapper = styled.div`
-    font-weight: 600;
-    width: 50%;
-    flex-basis: 50%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     height: 100%;
+    background: #313b4592;
     display: flex;
-    align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    z-index: 999;
 
-    &:hover{
-        background: #1D1F23;
-    }
-`;
-
-const ForYou = styled.p`
-    height: 100%;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    position: relative;
-
-    &::after{
-        content: '';
-        width: 100%;
-        height: 4px;
-        background: #1D9BF0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-radius: 10px;
-    }
-`;
-
-const FollowingWrapper = styled.div`
-    width: 50%;
-    flex-basis: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s ease;
-
-    &:hover{
-        background: #1D1F23;
-    }
-`;
-
-const Following = styled.p`
-    color: #71767B;
-    display: flex;
-    align-items: center;
+    ${props => props.active && css`
+        display: none;
+  `}
 `;
 
 const InputSection = styled.div`
-    margin-top: 120px;
+    padding-top: 60px;
+    margin-top: 50px;
     padding-left: 15px;
     display: flex;
     gap: 15px;
-    min-height: 120px;
     border-bottom: 1px solid #71767b6c;
+    background: black;
+    height: 320px;
+    width: 45%;
+    position: relative;
+    border-radius: 15px;
 `;
 
 const ProfileImage = styled.img`
@@ -129,7 +50,7 @@ const TweetSection = styled.div`
 `;
 
 const EveryoneWrapper = styled.div`
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
@@ -141,10 +62,6 @@ const EveryoneWrapper = styled.div`
     position: relative;
     cursor: default;
     user-select: none;
-
-    ${props => props.active && css`
-        display: flex;
-  `}
 `;
 
 const Everyone = styled.div`
@@ -209,7 +126,7 @@ const AudienceLogo = styled.div`
 const TweetInput = styled.textarea`
     width: 98%;
     word-break: break-all;
-    min-height: 20px;
+    min-height: 100px;
     margin-top: 20px;
     color: white;
     background: black;
@@ -234,7 +151,7 @@ const TweetInput = styled.textarea`
 
 const EveryoneReply = styled.div`
     width: 180px;
-    display: none;
+    display: flex;
     align-items: center;
     gap: 7px;
     padding: 3px 10px;
@@ -242,10 +159,6 @@ const EveryoneReply = styled.div`
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s ease;
-
-    ${props => props.active && css`
-        display: flex;
-  `}
 
     &:hover{
         background: #031018;
@@ -267,12 +180,7 @@ const EmojiContainer = styled.div`
     justify-content: space-between;
     width: 96%;
     height: 60px;
-    margin-top: -20px;
-    
-    ${props => props.active && css`
-        margin-top: 0;
-        border-top: 1px solid #71767b6c;
-  `}
+    border-top: 1px solid #71767b6c;
 `;
 
 const EmojiWrapper = styled.div`
@@ -290,7 +198,7 @@ const TweetButtonContainer = styled.div`
 `;
 
 const TweetLengthContainer = styled.div`
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
@@ -298,7 +206,7 @@ const TweetLengthContainer = styled.div`
     margin-right: 10px;
 
     ${props => props.active && css`
-        display: flex;
+        display: none;
   `}
 `;
 
@@ -317,7 +225,6 @@ const ShowTweetBox = styled.div`
     place-items: center;
     cursor: pointer;
     position: relative;
-    cursor: pointer;
 
     &::before{
         content: '';
@@ -347,103 +254,72 @@ const TweetButton = styled.button`
   `}
 `;
 
-const ShowTweetNums = styled.div`
+const CloseBox = styled.div`
     width: 100%;
-    border-bottom: 1px solid #71767b6c;
-    height: 50px;
-    display: grid;
-    place-items: center;
+    height: 100px;
+    position: absolute;
+    top: 15px;
+`;
+
+const SpanClose = styled.span`
     cursor: pointer;
-    transition: background 0.3s;
-
-    &:hover{
-        background: #080808;
-    }
-`;
-const ShowTweetNumsText = styled.div`
-    color: #1D9BF0;
 `;
 
-const MiddleSection = () => {
+const TweetBox = ({inputValue, setShowTweetBox, setInputValue, myTweet, setMyTweet, setShowTweetLength, setEnableBtn}) => {
     const [audience, setAudience] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
-    const [tweetNums, setTweetNums] = useState(Math.floor(Math.random() * 901) + 100);
-    const [enableBtn, setEnableBtn] = useState(false);
-    const [showTweetLength, setShowTweetLength] = useState(false);
+    const [newEnableBtn, setNewEnableBtn] = useState(true);
+    const [showNewTweetLength, setShowNewTweetLength] = useState(false);
 
-    const [inputValue, setInputValue] = useState('');
-    const [myTweet, setMyTweet] = useState([]);
-    const [showTweetBox, setShowTweetBox] = useState(false);
+    const [newInputValue, setNewInputValue] = useState(inputValue);
     
     const showAudience = () => {
-        setAudience(!audience);
+        setAudience(!audience)
     }
 
     const handleInputClick = () => {
-        setShowDetails(true);
+        setShowDetails(true)
     }
-
-    const generateRandomNum = () => {
-        return Math.floor(Math.random() * 901) + 50;
-    }
-    
-    useEffect(() => {
-        setTimeout(() => {
-            setTweetNums(generateRandomNum())
-        }, 12000)
-    }, [tweetNums]);
-
     const handleInputEnter = (e) => {
         if (e.target.value.length > 0) {
-            setEnableBtn(true);
-            setShowTweetLength(true);
+            setNewEnableBtn(true);
+            setShowNewTweetLength(false);
         }
         else {
-            setEnableBtn(false);
-            setShowTweetLength(false);
+            setNewEnableBtn(false);
+            setShowNewTweetLength(true);
         }
-        setInputValue(e.target.value);
+        setNewInputValue(e.target.value);
     }
 
-    const addTweet = () => {
-        if (inputValue === '') return false;
+    const addFromTweetBox = () => {
+        if (newInputValue === "") return false;
 
-        setMyTweet([{ id: uuid(), tweetContent: inputValue, liked: false, retweeted: false }, ...myTweet]);
-        setInputValue('')
-        setEnableBtn(false);
+        setMyTweet([{ id: uuid(), tweetContent: newInputValue, liked: false, retweeted: false }, ...myTweet]);
+        setNewInputValue('');
+        setInputValue('');
+        setNewEnableBtn(true);
+        setShowTweetBox(false);
         setShowTweetLength(false);
+        setEnableBtn(false)
     }
 
-    const handleShowTweetBox = () => {
-        setShowTweetBox(true);
+    const CloseTweetBox = () => {
+        setShowTweetBox(false)
     }
-
-
   return (
     <Container>
-        <Navbar>
-            <PageTitle>
-                Home
-              </PageTitle>
-              <NavbarBottomSection>
-                  <ForYouWrapper>
-                    <ForYou>
-                        For you
-                    </ForYou>
-                 </ForYouWrapper>
-                  <FollowingWrapper>
-                      <Following>
-                        Following
-                      </Following>
-                  </FollowingWrapper>
-              </NavbarBottomSection>
-        </Navbar>
         <InputSection>
+            <CloseBox>
+                <SpanClose onClick={CloseTweetBox} className="material-symbols-outlined">
+                close
+            </SpanClose>
+            </CloseBox>
             <ProfileImage src = {MyPhoto} />
             <TweetSection>
                 <EveryoneWrapper active={showDetails}>
-                    {audience 
-                    ? 
+                    {audience
+                    ?
                     <ChooseAudience>
                         <ChooseAudienceTitle>
                             Choose Audience
@@ -481,9 +357,9 @@ const MiddleSection = () => {
                 expand_more
                 </ExpandIcon>
                 </EveryoneWrapper>
-                <TweetInput onClick = {handleInputClick}   placeholder = "What's happening?" onChange = {handleInputEnter} value = {inputValue}>
+                <TweetInput onClick = {handleInputClick}   placeholder = "What's happening?" onChange = {handleInputEnter} value = {newInputValue}>
                 </TweetInput>
-                <EveryoneReply active={showDetails}>
+                <EveryoneReply>
                     <EveryoneReplyIcon>
                         <WorldIcon />
                     </EveryoneReplyIcon>
@@ -491,7 +367,7 @@ const MiddleSection = () => {
                         Everyone can reply
                     </EveryoneReplyText>
                 </EveryoneReply>
-                <EmojiContainer active={showDetails}>
+                <EmojiContainer>
                     <EmojiWrapper>
                         <ImageIcon />
                         <GifIcon />
@@ -501,47 +377,23 @@ const MiddleSection = () => {
                         <LocationIcon />
                     </EmojiWrapper>
                     <TweetButtonContainer>
-                        <TweetLengthContainer active={showTweetLength}>
+                        <TweetLengthContainer active={showNewTweetLength}>
                             <TweetLength>
                             
                             </TweetLength>
-                            <ShowTweetBox onClick = {handleShowTweetBox}>
+                            <ShowTweetBox>
                                 <PlusIcon />
                             </ShowTweetBox>
                         </TweetLengthContainer>
-                        <TweetButton active = {enableBtn} onClick = {addTweet}>
+                        <TweetButton active = {newEnableBtn} onClick = {addFromTweetBox}>
                             Tweet
                         </TweetButton>
                     </TweetButtonContainer>
                 </EmojiContainer>
             </TweetSection>
         </InputSection>
-        {showTweetBox ?
-         <TweetBox 
-            inputValue = {inputValue}
-            setShowTweetBox = {setShowTweetBox}
-            setInputValue = {setInputValue}
-            myTweet = {myTweet}
-            setMyTweet = {setMyTweet}
-            setShowTweetLength = {setShowTweetLength}
-            setEnableBtn = {setEnableBtn}
-         /> 
-         :
-          ''}
-        <ShowTweetNums>
-            <ShowTweetNumsText>
-                Show {tweetNums} tweets
-            </ShowTweetNumsText>
-        </ShowTweetNums>
-        <MyTweetCard 
-            inputValue = {inputValue}
-            setInputValue = {setInputValue}
-            myTweet = {myTweet}
-            setMyTweet = {setMyTweet}
-        />
-        <TweetCard />
     </Container>
   )
 }
 
-export default MiddleSection;
+export default TweetBox;
