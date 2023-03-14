@@ -114,6 +114,24 @@ const MainWrapper = styled.div`
   padding-left: 25px;
 `;
 
+const CopyrightContainer = styled.div`
+  width: 80%;
+  height: 80px;
+  margin-top: 20px;
+`;
+
+const CopyrightUl = styled.ul`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const CopyrightLi = styled.li`
+  color: #71767B;
+  list-style: none;
+`;
+
 const RightSection = () => {
   const [showActive, setShowActive] = useState(false);
   const [showWhite, setShowWhite] = useState(false);
@@ -184,6 +202,9 @@ const RightSection = () => {
       <MainWrapper>
         <TrendContainer />
         <WhoToFollow />
+        <CopyrightContainer>
+          ddd
+        </CopyrightContainer>
       </MainWrapper>
     </Container>
   )

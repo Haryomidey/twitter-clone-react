@@ -12,7 +12,8 @@ const WhoToFollowDB = [
         userHandle: '@Eruku_nlla',
         userBio: '30GB',
         following: '244',
-        follower: '257'
+        follower: '257',
+        followed: false
     },{
         id: 2,
         userImage: TrollFootballProfile,
@@ -21,7 +22,8 @@ const WhoToFollowDB = [
         userHandle: '@Troll_Fotballl',
         userBio: 'PARODY ACC',
         following: '29',
-        follower: '47.8K'
+        follower: '47.8K',
+        followed: false
     },{
         id: 3,
         userImage: AdarProfile,
@@ -34,7 +36,8 @@ const WhoToFollowDB = [
         @CleanCityPune
         , Passionate about vaccines, horse racing and public health.`,
         following: '86',
-        follower: '1.3M'
+        follower: '1.3M',
+        followed: false
     }
 ]
 

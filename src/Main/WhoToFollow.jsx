@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
-import MyPhoto from '../images/profileImage/My_profile.jpg';
 import WhoToFollowDB from '../WhoToFollowDB';
 
 const Container = styled.div`
@@ -102,7 +101,7 @@ const FollowButtonContainer = styled.div`
 `;
 const FollowButton = styled.button`
     border-radius: 20px;
-    border: 0;
+    border: 1px solid white;
     background: white;
     font-size: .9rem;
     padding: 6px 20px;
@@ -112,6 +111,25 @@ const FollowButton = styled.button`
 
     &:hover{
         background: #D7DBDC;
+    }
+`;
+
+const UnfollowButton = styled.button`
+    border-radius: 20px;
+    border: .06rem solid white;
+    background: black;
+    color: white;
+    font-size: .9rem;
+    width: 90px;
+    height: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover{
+        background: #190305;
+        color: #B41822;
+        border: .06rem solid #B41822;
     }
 `;
 
@@ -161,7 +179,7 @@ const UserHoverImage = styled.img`
 
 const FollowButtonHover = styled.button`
     border-radius: 20px;
-    border: 0;
+    border: 1px solid white;
     background: white;
     font-size: .9rem;
     width: 70px;
@@ -172,6 +190,25 @@ const FollowButtonHover = styled.button`
 
     &:hover{
         background: #D7DBDC;
+    }
+`;
+
+const UnfollowButtonHover = styled.button`
+    border-radius: 20px;
+    border: .06rem solid white;
+    background: black;
+    color: white;
+    font-size: .9rem;
+    width: 90px;
+    height: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover{
+        background: #190305;
+        color: #B41822;
+        border: .06rem solid #B41822;
     }
 `;
 
@@ -222,20 +259,64 @@ const FollowerSpan = styled.span`
 
 const WhoToFollow = () => {
 
+    const [followState, setFollowState] = useState(WhoToFollowDB);
+    const [hoverState, setHoverState] = useState(null);
+    const [hoveredState, setHoveredState] = useState(null);
+
+    const unfollowClick = (id) => {
+        setFollowState(followState.map(tweet => {
+            if (tweet.id === id.id) {
+                return { ...tweet, followed: true };
+            }
+            return tweet;
+        }))
+    }
     
+    const followClick = (id) => {
+        setFollowState(followState.map(tweet => {
+            if (tweet.id === id.id) {
+                return { ...tweet, followed: false };
+            }
+            return tweet;
+        }))
+    }
+
+    const handleMouseEnter = (index) => {
+        setHoverState(index);
+        setHoveredState(null);
+    }
+
+    const handleMouseLeave = (index) => {
+        setHoverState(null);
+        setHoveredState(index);
+    }
+
+      const handleMouseEnterHover = (index) => {
+        setHoveredState(index);
+        setHoverState(null);
+    }
+
+    const handleMouseLeaveHover = (index) => {
+        setHoveredState(null);
+        setHoverState(index);
+    }
 
     return (
       <Container>
         <ContainerTitle>
             Trends for you
         </ContainerTitle>
-        {WhoToFollowDB.map(follow => (
+        {followState.map(follow => (
             <WhoToFollowList>
                 <UserContainer>
                     <UserHover className = "child">
                         <UserImageHoverContainer>
                             <UserHoverImage src = {follow.userImage} />
-                            <FollowButtonHover>Follow</FollowButtonHover>
+                            {follow.followed ? 
+                                <UnfollowButtonHover onClick = {() => followClick(follow)} onMouseEnter={() => handleMouseEnterHover(follow.id)} onMouseLeave={handleMouseLeaveHover}>{hoveredState === follow.id ? 'UnFollow' : 'Following'}</UnfollowButtonHover>
+                                :
+                                <FollowButtonHover onClick = {() => unfollowClick(follow)}>Follow</FollowButtonHover>
+                            }
                         </UserImageHoverContainer>
                         <UserNameWrapper>
                             <User>
@@ -270,7 +351,11 @@ const WhoToFollow = () => {
                     </UserNameWrapper>
                 </UserContainer>
                 <FollowButtonContainer>
-                    <FollowButton>Follow</FollowButton>
+                    {follow.followed ? 
+                        <UnfollowButton onClick = {() => followClick(follow)}onMouseEnter={() => handleMouseEnter(follow.id)} onMouseLeave={handleMouseLeave}>{hoverState === follow.id ? 'UnFollow' : 'Following'}</UnfollowButton>
+                        :
+                        <FollowButton onClick = {() => unfollowClick(follow)}>Follow</FollowButton>
+                    }
                 </FollowButtonContainer>
             </WhoToFollowList>
         ))}
