@@ -10,6 +10,10 @@ const Container = styled.div`
   left: 23%;
   display: flex;
   overflow-y: scroll;
+  
+  &::-webkit-scrollbar {
+    display: none;
+    }
 `;
 
 const Main = () => {

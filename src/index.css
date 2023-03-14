@@ -28,6 +28,7 @@
 svg{
   width: 1.7rem;
   fill: white;
+  color: rgba(202, 202, 202, 0.779);
 }
 
 #three_dots{
@@ -182,4 +183,5 @@ svg{
   border-radius: 50%;
   transition: background 0.3s ease;
   position: relative;
+  color: rgba(0, 0, 0, 0.73);
 }

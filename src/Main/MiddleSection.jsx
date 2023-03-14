@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Navbar = styled.div`
     height: 120px;
-    width: calc(45% + 5px);
+    width: calc(45% + 15px);
     border-bottom: 1px solid #71767b6c;
     position: fixed;
     top: 0;
@@ -35,6 +35,7 @@ const Navbar = styled.div`
     justify-content: space-between;
     backdrop-filter: blur(10px) brightness(100%);
     z-index: 111;
+    background: rgba(0, 0, 0, 0.73);
 `;
 
 const PageTitle = styled.h1`
@@ -304,22 +305,23 @@ const TweetLengthContainer = styled.div`
 
 const TweetLength = styled.div`
     border: 2px solid #71767b6c;
+    border-width: 50%;
     width: 22px;
     height: 22px;
     border-radius: 50%;
     position: relative;
 
-    &::after{
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-        border: 2.5px solid #1D9BF0;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+    // &::after{
+    //     content: '';
+    //     position: absolute;
+    //     height: 100%;
+    //     width: 100%;
+    //     border-radius: 50%;
+    //     border: 2.5px solid #1D9BF0;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    // }
 `;
 const ShowTweetBox = styled.div`
     width: 22px;
