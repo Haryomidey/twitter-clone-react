@@ -1,29 +1,27 @@
-import styled from 'styled-components';
-import MiddleSection from './MiddleSection';
-import RightSection from './RightSection';
+// import styled from 'styled-components';
+// import MiddleSection from './MiddleSection';
+// import RightSection from './RightSection';
 
-const Container = styled.div`
-  width: 77%;
-  height: 100vh;
-  position: relative;
-  margin-bottom: 20px;
-  left: 23%;
-  display: flex;
-  overflow-y: scroll;
-  // background: blue;
+// const Container = styled.div`
+//   width: 77%;
+//   height: auto;
+//   position: relative;
+//   left: 23%;
+//   display: flex;
+//   overflow-y: scroll;
   
-  &::-webkit-scrollbar {
-    display: none;
-    }
-`;
+//   &::-webkit-scrollbar {
+//     display: none;
+//     }
+// `;
 
-const Main = () => {
-  return (
-    <Container>
-      <MiddleSection />
-      <RightSection />
-    </Container>
-  )
-}
+// const Main = () => {
+//   return (
+//     <Container>
+//       <MiddleSection />
+//       <RightSection />
+//     </Container>
+//   )
+// }
 
-export default Main
+// export default Main

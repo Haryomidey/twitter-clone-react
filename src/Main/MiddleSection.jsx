@@ -10,18 +10,24 @@ import TweetBox from './TweetBox';
 
 
 const Container = styled.div`
+    margin-left: 23%;
     width: 60%;
-    // min-height: 100% !important;
+    flex: 0.6;
     border-right: 1px solid #71767b6c;
     color: #E7E9EA;
-    margin-bottom: 10px;
-    // background: red;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
 `;
 
 const Navbar = styled.div`
     height: 120px;
-    width: calc(45% + 15px);
+    width: calc(45% + 16px);
     border-bottom: 1px solid #71767b6c;
     position: fixed;
     top: 0;
@@ -30,7 +36,7 @@ const Navbar = styled.div`
     flex-direction: column;
     justify-content: space-between;
     backdrop-filter: blur(10px) brightness(100%);
-    z-index: 111;
+    z-index: 0;
     background: rgba(0, 0, 0, 0.73);
 `;
 

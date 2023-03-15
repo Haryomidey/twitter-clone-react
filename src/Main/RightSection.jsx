@@ -4,8 +4,12 @@ import TrendContainer from './TrendContainer';
 import WhoToFollow from './WhoToFollow';
 
 const Container = styled.div`
-  min-height: 100vh !important;
-  width: 40%;
+  // width: 40%;
+  flex: 0.4;
+  max-height: 1500px;
+  top: -1250px;
+  position: sticky;
+  left: 83%;
 `;
 
 const Navbar = styled.div`
@@ -17,6 +21,7 @@ const Navbar = styled.div`
   display: flex;
   padding-top: 6px;
   padding-left: 25px;
+  z-index: 12;
 `;
 
 const InputWrapper = styled.div`
@@ -94,6 +99,7 @@ const ShowSearched = styled.div`
   height: 100px;
   box-shadow: 0 0 8px rgba(202, 202, 202, 0.779);
   position: absolute;
+  background: black;
   top: 88%;
   border-radius: 10px;
   display: none;
@@ -130,6 +136,97 @@ const CopyrightUl = styled.ul`
 const CopyrightLi = styled.li`
   color: #71767B;
   list-style: none;
+  font-size: .9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 5px;
+`;
+
+const CopyrightText = styled.p`
+  &:hover{
+    text-decoration: underline;
+  }
+`;
+
+const MoreThreeDot = styled.svg`
+  fill: #71767B;
+  width: 1rem;
+`;
+
+const CopyrightLastText = styled.p`
+  color: #71767B;
+  font-size: .9rem;
+  margin-top: 10px;
+`;
+
+const MessageContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 28%;
+  margin-left: 20px;
+  height: 55px;
+  background: black;
+  box-shadow: 0 0 10px #fffbfb7c;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  padding: 0 15px;
+  z-index: 11;
+
+  ${props => props.active && css`
+    height: 500px;
+  `}
+`;
+
+const MessageTitleWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    width: 100%
+`;
+
+const MessageContainerTitle = styled.h1`
+  color: white;
+  font-size: 1.28rem;
+`;
+
+const MessageIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
+
+const MessagePlusSvg = styled.svg`
+  fill: white;
+  width: 1.4rem;
+  cursor: pointer;
+`;
+
+const DoubleArrowUp = styled.svg`
+  fill: white;
+  width: 1.4rem;
+  cursor: pointer;
+`;
+
+const DoubleArrowDown = styled.svg`
+  fill: white;
+  width: 1.4rem;
+  cursor: pointer;
+`;
+
+const DisplayMessage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const DisplayMessageText = styled.p`
+  color: white;
+  font-size: 1.6rem;
 `;
 
 const RightSection = () => {
@@ -137,6 +234,7 @@ const RightSection = () => {
   const [showWhite, setShowWhite] = useState(false);
   const [showCloseIcon, setShowCloseIcon] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [showMessageDetails, setShowMessageDetails] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
   const handleShowActive = () => {
@@ -176,8 +274,14 @@ const RightSection = () => {
     setInputValue('');
     setShowActive(true);
     setIsFocus(true);
+  }
 
-    console.log(inputValue);
+  const handleShowMessageDetails = () => {
+    setShowMessageDetails(true);
+  }
+
+  const handleHideMessageDetails = () => {
+    setShowMessageDetails(false);
   }
 
   return (
@@ -203,9 +307,38 @@ const RightSection = () => {
         <TrendContainer />
         <WhoToFollow />
         <CopyrightContainer>
-          ddd
+          <CopyrightUl>
+            <CopyrightLi><CopyrightText>Terms of Service</CopyrightText></CopyrightLi>
+            <CopyrightLi><CopyrightText>Privacy Policy</CopyrightText> </CopyrightLi>
+            <CopyrightLi><CopyrightText>Cookie Policy</CopyrightText> </CopyrightLi>
+            <CopyrightLi><CopyrightText>Accessibility</CopyrightText></CopyrightLi>
+            <CopyrightLi><CopyrightText>Ads info</CopyrightText></CopyrightLi>
+            <CopyrightLi><CopyrightText>More</CopyrightText><MoreThreeDot viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"><g><path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path></g>
+            </MoreThreeDot></CopyrightLi>
+          </CopyrightUl>
+          <CopyrightLastText>© 2023 Twitter, Inc.</CopyrightLastText>
         </CopyrightContainer>
       </MainWrapper>
+      <MessageContainer active = {showMessageDetails}>
+        <MessageTitleWrapper>
+          <MessageContainerTitle>Messages</MessageContainerTitle>
+          <MessageIconContainer>
+            <MessagePlusSvg viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5V12h-2v-1.537l-8 3.635-8-3.635V18.5c0 .276.224.5.5.5H13v2H4.498c-1.381 0-2.5-1.119-2.5-2.5v-13zm2 2.766l8 3.635 8-3.635V5.5c0-.276-.224-.5-.5-.5h-15c-.276 0-.5.224-.5.5v2.766zM19 18v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"></path></g>
+            </MessagePlusSvg>
+            {!showMessageDetails ?
+              <DoubleArrowUp onClick = {handleShowMessageDetails} viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z"></path></g>
+              </DoubleArrowUp>
+              
+              :
+              <DoubleArrowDown onClick = {handleHideMessageDetails} viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z"></path></g>
+              </DoubleArrowDown>
+            }
+          </MessageIconContainer>
+        </MessageTitleWrapper>
+        <DisplayMessage>
+          <DisplayMessageText>No Message(s) here.</DisplayMessageText>
+        </DisplayMessage>
+      </MessageContainer>
     </Container>
   )
 }

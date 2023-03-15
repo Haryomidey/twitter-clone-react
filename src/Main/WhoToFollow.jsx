@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled, {css} from 'styled-components';
 import WhoToFollowDB from '../WhoToFollowDB';
 
@@ -117,7 +117,7 @@ const FollowButton = styled.button`
 const UnfollowButton = styled.button`
     border-radius: 20px;
     border: .06rem solid white;
-    background: black;
+    background: transparent;
     color: white;
     font-size: .9rem;
     width: 90px;
@@ -161,7 +161,7 @@ const UserHover = styled.div`
     left: -20%;
     color: white;
     display: none;
-    z-index: 111;
+    z-index: 1;
 `;
 
 const UserImageHoverContainer = styled.div`
@@ -257,11 +257,91 @@ const FollowerSpan = styled.span`
     font-size: .9rem;
 `;
 
+const UnFollowContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #222f314d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 111;
+`;
+
+const UnFollowContainerBox = styled.div`
+    width: 330px;
+    height: 300px;
+    padding: 0 30px;
+    background: black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+const UnFollowUser = styled.h1`
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+`;
+
+const UnfollowText = styled.p`
+    color: #71767B;
+    line-height: 23px;
+`;
+
+const UnfollowButtonShow = styled.button`
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background: white;
+    font-size: 1rem;
+    width: 100%;
+    height: 43px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover{
+        background: #D7DBDC;
+    }
+`;
+
+const CancelUnfollowButton = styled.button`
+    border-radius: 20px;
+    border: .06rem solid white;
+    background: black;
+    color: white;
+    font-size: .9rem;
+    width: 100%;
+    height: 43px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover{
+        background: #1D1F23;
+        border: .06rem solid white;
+    }
+`;
+
+
 const WhoToFollow = () => {
 
     const [followState, setFollowState] = useState(WhoToFollowDB);
     const [hoverState, setHoverState] = useState(null);
     const [hoveredState, setHoveredState] = useState(null);
+    const [showUnfollowContainer, setShowUnfollowContainer] = useState(false);
+    const [showContainer, setShowContainer] = useState(null);
 
     const unfollowClick = (id) => {
         setFollowState(followState.map(tweet => {
@@ -299,6 +379,23 @@ const WhoToFollow = () => {
     const handleMouseLeaveHover = (index) => {
         setHoveredState(null);
         setHoverState(index);
+    }
+
+    const handleUnfollowContainerShow = (index) => {
+        setShowContainer(index)
+        console.log(index);
+        setShowUnfollowContainer(true);
+    }
+
+    const handleUnfollowContainerHide = () => {
+        setShowContainer(null)
+        setShowUnfollowContainer(false);
+    }
+
+    const hideFollow = (follow) => {
+        followClick(follow)
+        setShowUnfollowContainer(false);
+        setShowContainer(null)
     }
 
     return (
@@ -352,11 +449,27 @@ const WhoToFollow = () => {
                 </UserContainer>
                 <FollowButtonContainer>
                     {follow.followed ? 
-                        <UnfollowButton onClick = {() => followClick(follow)}onMouseEnter={() => handleMouseEnter(follow.id)} onMouseLeave={handleMouseLeave}>{hoverState === follow.id ? 'UnFollow' : 'Following'}</UnfollowButton>
+                        <UnfollowButton onClick = {() => handleUnfollowContainerShow(follow.id)} onMouseEnter={() => handleMouseEnter(follow.id)} onMouseLeave={handleMouseLeave}>{hoverState === follow.id ? 'UnFollow' : 'Following'}</UnfollowButton>
                         :
                         <FollowButton onClick = {() => unfollowClick(follow)}>Follow</FollowButton>
                     }
                 </FollowButtonContainer>
+                {showContainer === follow.id ?
+                    <UnFollowContainer>
+                        <UnFollowContainerBox>
+                            <UnFollowUser>
+                                Unfollow {follow.userHandle}?
+                            </UnFollowUser>
+                            <UnfollowText>
+                                Their Tweets will no longer show up in your home timeline. You can still view their profile, unless their Tweets are protected.
+                            </UnfollowText>
+                            <UnfollowButtonShow onClick={() => hideFollow(follow)}>Unfollow</UnfollowButtonShow>
+                            <CancelUnfollowButton onClick={handleUnfollowContainerHide}>Cancel</CancelUnfollowButton>
+                        </UnFollowContainerBox>
+                    </UnFollowContainer>
+                :
+                ""    
+                }
             </WhoToFollowList>
         ))}
         <ShowMore>Show more</ShowMore>
