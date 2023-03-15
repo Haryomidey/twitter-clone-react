@@ -7,7 +7,7 @@ const WhoToFollowDB = [
     {
         id: 1,
         userImage: ErukuProfile,
-        userName: '',
+        userName: '🤞',
         verified: 'no',
         userHandle: '@Eruku_nlla',
         userBio: '30GB',
