@@ -4,12 +4,15 @@ import TrendContainer from './TrendContainer';
 import WhoToFollow from './WhoToFollow';
 
 const Container = styled.div`
-  // width: 40%;
   flex: 0.4;
   max-height: 1500px;
   top: -1250px;
   position: sticky;
-  left: 83%;
+
+  @media (max-width: 1015px) {
+    display: none;
+  }
+
 `;
 
 const Navbar = styled.div`
@@ -22,6 +25,10 @@ const Navbar = styled.div`
   padding-top: 6px;
   padding-left: 25px;
   z-index: 12;
+
+  @media (max-width: 1161px) {
+    width: calc(35% + 27px);
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -168,7 +175,7 @@ const MessageContainer = styled.div`
   margin-left: 20px;
   height: 55px;
   background: black;
-  box-shadow: 0 0 10px #fffbfb7c;
+  box-shadow: 0 0 10px  #313b4592;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   padding: 0 15px;
@@ -177,6 +184,10 @@ const MessageContainer = styled.div`
   ${props => props.active && css`
     height: 500px;
   `}
+
+  @media (max-width: 1161px) {
+    width: 33%;
+  }
 `;
 
 const MessageTitleWrapper = styled.div`
@@ -326,7 +337,7 @@ const RightSection = () => {
             <MessagePlusSvg viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5V12h-2v-1.537l-8 3.635-8-3.635V18.5c0 .276.224.5.5.5H13v2H4.498c-1.381 0-2.5-1.119-2.5-2.5v-13zm2 2.766l8 3.635 8-3.635V5.5c0-.276-.224-.5-.5-.5h-15c-.276 0-.5.224-.5.5v2.766zM19 18v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"></path></g>
             </MessagePlusSvg>
             {!showMessageDetails ?
-              <DoubleArrowUp onClick = {handleShowMessageDetails} viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z"></path></g>
+              <DoubleArrowUp onClick = {handleShowMessageDetails} viewBox="0 0 24 24" aria-hidden="true" className="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"><g><path d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z"></path></g>
               </DoubleArrowUp>
               
               :

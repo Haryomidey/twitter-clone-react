@@ -1,5 +1,7 @@
-import styled from 'styled-components';
-import { BookmarkIcon, Communities, Explore, HomeIcon, MessageIcon, MoreIcon, NotificationIcon, ProfileIcon, ThreeDot, TwitterBlueIcon, TwitterLogo } from '../TweetIcons';
+import styled, {css} from 'styled-components';
+import { BookmarkIcon, Communities, Explore, HomeIcon, MessageIcon, MoreIcon, NotificationIcon, ProfileIcon, ThreeDot, TweetsIcon, TwitterBlueIcon, TwitterLogo } from '../TweetIcons';
+
+import { useState, useEffect } from 'react';
 
 import MyPhoto from '../images/profileImage/My_profile.jpg';
 
@@ -10,6 +12,33 @@ const Container = styled.div`
   height: 100%;
   background: transparent;
   position: fixed;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 1161px) {
+    width: 6%;
+    overflow-x: hidden;
+  }
+
+   @media (max-width: 1015px) {
+    width: 8%;
+  }
+
+  @media (max-width: 730px) {
+    position: fixed;
+    top: 0;
+    // left: -100%;
+    left: ${props => props.active === "left" ? `${100}%` : props.active ===  'right' ? `${0}%` : ''};
+    bottom: 0;
+    width: 40%;
+    min-width: 200px;
+    height: 100%;
+    background: black;
+    z-index: 11;
+  }
+
 `;
 
 const TwitterIcon = styled.h1`
@@ -23,8 +52,13 @@ const TwitterIcon = styled.h1`
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s ease;
+
   &:hover{
     background: #0A171F;
+  }
+
+  @media (max-width: 1161px) {
+    margin-left: 10%;
   }
 `;
 
@@ -35,6 +69,14 @@ const Ulcontainer = styled.ul`
   flex-direction: column;
   padding-left: 20%;
   gap: 2px;
+
+  @media (max-width: 1161px) {
+    padding-left: 0;
+  }
+
+  @media (max-width: 730px) {
+    padding-left: 5%;
+  }
 `;
 
 const LiContainer = styled.li`
@@ -50,11 +92,34 @@ const LiContainer = styled.li`
   &:hover{
     background: #181818;
   }
+
+  @media (max-width: 1161px) {
+    gap: 40px;
+
+    &:hover{
+      background: 0;
+    }
+  }
+
+  @media (max-width: 730px) {
+    gap: 10px;
+
+    &:hover{
+      background: #181818;
+    }
+  }
 `;
 
 const LiText = styled.h2`
   color: white;
   font-weight: 300;
+
+  @media (max-width: 1161px) {
+    &:hover{
+      background: 0;
+    }
+  }
+
 `;
 
 const Bold = styled.p`
@@ -67,6 +132,10 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 5px 0;
+
+  @media (max-width: 730px){
+    justify-content: flex-start;
+  }
 `;
 
 const Button = styled.button`
@@ -81,8 +150,45 @@ const Button = styled.button`
   border: 0;
   cursor: pointer;
   transition: background 0.3s ease;
+
   &:hover{
     background: #1A8CD8;
+  }
+
+  @media (max-width: 1161px) {
+    display: none;
+  }
+
+  @media (max-width: 730px) {
+    display: block;
+  }
+`;
+
+const ButtonTweet = styled.button`
+  background: #1D9BF0;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  width: 50px;
+  height: 50px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover{
+    background: #1A8CD8;
+  }
+
+  @media (max-width: 1161px) {
+    display: flex;
+  }
+
+  @media (max-width: 730px) {
+    display: none;
   }
 `;
 
@@ -103,12 +209,33 @@ const MyAccountContainer = styled.div`
   &:hover{
     background: #1D1F23;
   }
+
+  @media (max-width: 1161px) {
+    margin-left: 0;
+     &:hover{
+      background: 0;
+    }
+  }
+
+  @media (max-width: 730px) {
+    margin-left: 5%;
+    width: 90%;
+
+     &:hover{
+      background: #1D1F23;
+    }
+  }
+
 `;
 
 const AccountImage = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
+
+  @media (max-width: 1161px) {
+    margin-right: 20px;
+  }
 `;
 
 const UserAccountWrapper = styled.div`
@@ -120,11 +247,19 @@ const UserAccountWrapper = styled.div`
 const UserAccount = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 680px){
+    margin-left: -10px;
+  }
 `;
 
 const UserName = styled.p`
   display: flex;
   align-items: center;
+
+  @media (max-width: 680px){
+    font-size: .9rem;
+  }
 `;
 
 const Span = styled.span`
@@ -135,21 +270,35 @@ const Span = styled.span`
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+
+  @media (max-width: 680px){
+    font-size: 1rem;
+  }
 `;
 
 const UserHandle = styled.p`
   color: #71767B;
   padding-top: 3px;
+
+  @media (max-width: 680px){
+    font-size: .8rem;
+  }
+  
 `;
 
-const ThreeDotWrapper = styled.p`
+const ThreeDotWrapper = styled.div`
   font-size: .9rem;
+
+  @media (max-width: 680px){
+    display: none;
+  }
 `;
 
 
-const LeftSection = () => {
+const LeftSection = ({direction}) => {
   return (
-    <Container>
+    <Container active = {direction}>
       <TwitterIcon>
         <TwitterLogo className="twitter_logo" />
       </TwitterIcon>
@@ -193,6 +342,7 @@ const LeftSection = () => {
       </Ulcontainer>
       <ButtonContainer>
         <Button>Tweet</Button>
+        <ButtonTweet><TweetsIcon /></ButtonTweet>
       </ButtonContainer>
       <MyAccountContainer>
         <UserAccountWrapper>

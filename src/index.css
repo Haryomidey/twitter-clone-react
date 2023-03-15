@@ -31,6 +31,12 @@ svg{
   color: rgba(202, 202, 202, 0.779);
 }
 
+@media (max-width: 450px){
+  svg{
+    width: 1.2rem;
+  }
+}
+
 #three_dots{
   width: 1.1rem;
 }
@@ -67,6 +73,7 @@ svg{
   width: 2.3rem;
   fill: #1d9cf07e;
   padding: 8px;
+  background-blend-mode:color-dodge;
 }
 
 #plus_icon{
@@ -75,12 +82,17 @@ svg{
   
 }
 
+#twitter_blue_icon{
+  min-width: 1.6rem;
+}
+
 .comment_wrapper, .retweet_wrapper, .like_wrapper, .views_wrapper, .share_wrapper{
   display: flex;
   align-items: center;
   color: #71767B;
   font-size: 1rem;
 }
+
 
 .comment_wrapper:hover .comment, .comment_wrapper:hover p{
   fill: var(--light_blue);
@@ -183,4 +195,85 @@ svg{
   border-radius: 50%;
   transition: background 0.3s ease;
   position: relative;
+}
+
+
+@media (max-width: 1080px){
+  #poll_icon {
+    display: none;
+  }
+  #calendar_icon {
+    display: none;
+  }
+}
+
+@media (max-width: 450px){
+  .comment_wrapper, .retweet_wrapper, .like_wrapper, .views_wrapper, .share_wrapper{
+    font-size: .8rem;
+  }
+
+  .comment,
+  .retweet,
+  .like,
+  .view,
+  .share{
+    padding: 10px;
+    width: 2.3rem;
+  }
+
+  .retweeted{
+    width: 2.3rem;
+    padding: 10px;
+  }
+
+  .liked{
+    width: 2.3rem;
+    padding: 10px;
+  }
+
+}
+
+@media (max-width: 385px){
+  #image_icon,
+  #gif_icon,
+  #emoji_icon,
+  #location_icon{
+    width: 1.4rem;
+    padding: 2px;
+  }
+}
+
+@media (max-width: 331px){
+      .comment_wrapper, .retweet_wrapper, .like_wrapper, .views_wrapper, .share_wrapper{
+    font-size: .8rem;
+  }
+
+  .comment,
+  .retweet,
+  .like,
+  .view,
+  .share{
+    padding: 8px;
+    width: 2rem;
+  }
+
+  .retweeted{
+    width: 2rem;
+    padding: 8px;
+  }
+
+  .liked{
+    width: 2rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 311px){
+  #image_icon,
+  #gif_icon,
+  #emoji_icon,
+  #location_icon{
+    width: 1.3rem;
+    padding: 2px;
+  }
 }

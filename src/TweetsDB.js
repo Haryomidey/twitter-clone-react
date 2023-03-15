@@ -215,12 +215,12 @@ const TweetsDB = [
         verified: 'no',
         userHandle: '@the_smallie',
         tweetTime: '2h',
-        tweetContent: 'Man U vs Real Betis half time:',
+        tweetContent: 'We are going to be reading, fasting and writing exams under this hot sun',
         tweetImage: SmallieContent,
-        tweetComments: 66,
-        tweetRetweets: 175,
-        tweetLikes: 2268,
-        tweetViews: '76.7k'
+        tweetComments: 61,
+        tweetRetweets: 198,
+        tweetLikes: 1407,
+        tweetViews: '46.7k'
     },
     {
         id: 13,

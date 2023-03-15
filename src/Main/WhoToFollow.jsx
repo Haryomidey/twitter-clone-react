@@ -259,23 +259,30 @@ const FollowerSpan = styled.span`
 
 const UnFollowContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
     position: fixed;
     overflow: hidden;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    background: #222f314d;
+    background:  #283b47b1;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 111;
+    backdrop-filter: blur(1px);
+
+    &:hover + ${Container} {
+        pointer-events: none;
+  }
 `;
 
 const UnFollowContainerBox = styled.div`
-    width: 330px;
-    height: 300px;
+    width: 310px;
+    height: 320px;
     padding: 0 30px;
     background: black;
     border-radius: 15px;
@@ -383,7 +390,6 @@ const WhoToFollow = () => {
 
     const handleUnfollowContainerShow = (index) => {
         setShowContainer(index)
-        console.log(index);
         setShowUnfollowContainer(true);
     }
 
@@ -404,7 +410,7 @@ const WhoToFollow = () => {
             Trends for you
         </ContainerTitle>
         {followState.map(follow => (
-            <WhoToFollowList>
+            <WhoToFollowList key = {follow.id}>
                 <UserContainer>
                     <UserHover className = "child">
                         <UserImageHoverContainer>

@@ -29,7 +29,7 @@ const TrendsList = styled.div`
     }
 `;
 
-const TrendLocationContainer = styled.p`
+const TrendLocationContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -80,7 +80,7 @@ const TrendContainer = () => {
             Trends for you
         </ContainerTitle>
           {TrendsDB.map(trend => (
-            <TrendsList>
+            <TrendsList key = {trend.id}>
                 <TrendLocationContainer>
                     <TrendLocation>
                         {trend.trendsLocation}

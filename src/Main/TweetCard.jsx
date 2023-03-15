@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import TweetCardEmpty from './TweetCardEmpty';
 import TweetsDB from '../TweetsDB';
 
-// import { useState } from 'react';
-
 const Container = styled.div`
   width: 100%;
 `;
@@ -14,8 +12,9 @@ const TweetCard = () => {
 
   return (
     <Container>
-      {TweetsDB.map(tweet => (
+      {TweetsDB.map((tweet) => (
         <TweetCardEmpty
+          key = {tweet.id}
           id={tweet.id}
           tweetSource={tweet.tweetSource}
           userImage={tweet.userImage}

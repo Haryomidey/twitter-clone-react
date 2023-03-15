@@ -11,6 +11,7 @@ import TweetBox from './TweetBox';
 
 const Container = styled.div`
     margin-left: 23%;
+    position: relative;
     width: 60%;
     flex: 0.6;
     border-right: 1px solid #71767b6c;
@@ -21,6 +22,22 @@ const Container = styled.div`
 
     &::-webkit-scrollbar {
         display: none;
+    }
+
+    @media (max-width: 1161px) {
+        margin-left: 6%;
+    }
+
+     @media (max-width: 1015px) {
+        margin-left: 8%;
+        width: 80%;
+        flex: 0.8;
+    }
+
+    @media (max-width: 730px) {
+        width: 100%;
+        flex: 1;
+        margin-left: 0;
     }
 
 `;
@@ -36,14 +53,38 @@ const Navbar = styled.div`
     flex-direction: column;
     justify-content: space-between;
     backdrop-filter: blur(10px) brightness(100%);
-    z-index: 0;
     background: rgba(0, 0, 0, 0.73);
+
+    @media (max-width: 1161px) {
+        left: 6%;
+        width: calc(55% + 15px);
+    }
+
+    @media (max-width: 1074px) {
+        width: calc(55% + 13px);
+    }
+
+    @media (max-width: 1015px) {
+        left: 8%;
+        width: 73.5%;
+    }
+
+    @media (max-width: 730px) {
+        left: 0%;
+        right: 0;
+        width: 100%;
+    }
+
 `;
 
 const PageTitle = styled.h1`
     margin: 15px;
     font-weight: 600;
     font-size: 1.4rem;
+
+    @media (max-width: 385px){
+        font-size: 1.2rem;
+    }
 `;
 
 const NavbarBottomSection = styled.div`
@@ -68,6 +109,7 @@ const ForYouWrapper = styled.div`
     &:hover{
         background: #1D1F23;
     }
+
 `;
 
 const ForYou = styled.p`
@@ -87,6 +129,10 @@ const ForYou = styled.p`
         left: 0;
         border-radius: 10px;
     }
+
+    @media (max-width: 385px){
+        font-size: .9rem;
+    }
 `;
 
 const FollowingWrapper = styled.div`
@@ -102,12 +148,18 @@ const FollowingWrapper = styled.div`
     &:hover{
         background: #1D1F23;
     }
+
+    
 `;
 
 const Following = styled.p`
     color: #71767B;
     display: flex;
     align-items: center;
+
+    @media (max-width: 385px){
+        font-size: .9rem;
+    }
 `;
 
 const InputSection = styled.div`
@@ -117,6 +169,10 @@ const InputSection = styled.div`
     gap: 15px;
     min-height: 120px;
     border-bottom: 1px solid #71767b6c;
+
+    @media (max-width: 385px){
+        padding-left: 5px;
+    }
 `;
 
 const ProfileImage = styled.img`
@@ -124,6 +180,11 @@ const ProfileImage = styled.img`
     height: 55px;
     border-radius: 50%;
     margin-top: 8px;
+
+    @media (max-width: 385px){
+        width: 45px;
+        height: 45px;
+    }
 `;
 
 const TweetSection = styled.div`
@@ -141,9 +202,13 @@ const EveryoneWrapper = styled.div`
     color: #1D9BF0;
     margin-top: 8px;
     width: 100px;
-    position: relative;
     cursor: default;
     user-select: none;
+    z-index: inherit;
+
+    @media (max-width: 385px){
+        width: 80px;
+    }
 
     ${props => props.active && css`
         display: flex;
@@ -152,10 +217,18 @@ const EveryoneWrapper = styled.div`
 
 const Everyone = styled.div`
     font-size: .9rem;
+
+    @media (max-width: 385px){
+        font-size: .7rem;
+    }
 `;
 
 const ExpandIcon = styled.span`
     font-size: 1.3rem;
+
+    @media (max-width: 385px){
+        font-size: 1rem;
+    }
 `;
 
 const ChooseAudience = styled.div`
@@ -164,17 +237,40 @@ const ChooseAudience = styled.div`
     min-height: 250px;
     background: black;
     box-shadow: 0 0 10px rgba(161, 160, 160, 0.507);
-    top: 10%;
-    left: 1%;
+    top: 1.8%;
+    left: 13%;
     transform: translate(-20%, 16%);
     border-radius: 20px;
     padding-bottom: 10px;
+    z-index: inherit;
+
+    @media (max-width: 555px){
+        max-width: 250px;
+        top: 2%;
+        left: 20%;
+    }
+
+    @media (max-width: 485px){
+        top: 2.1%;
+    }
+
+    @media (max-width: 425px){
+        top: 2.4%;
+    }
+
+    @media (max-width: 285px){
+        max-width: 220px;
+    }
 `;
 
 const ChooseAudienceTitle = styled.h1`
     color: white;
     margin: 18px 15px;
     font-size: 1.4rem;
+
+     @media (max-width: 305px){
+        font-size: 1.2rem;
+    }
 `;
 
 const EachAudience = styled.div`
@@ -231,8 +327,22 @@ const TweetInput = styled.textarea`
     }
 
     &::placeholder{
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
+
+    @media (max-width: 560px){
+        font-size: 1.2rem;
+
+        &::placeholder{
+        font-size: 1.2rem;
+    }
+
+    @media (max-width: 360px){
+        font-size: 1rem;
+        &::placeholder{
+        font-size: 1rem;
+    }
+}
 `;
 
 const EveryoneReply = styled.div`
@@ -253,6 +363,12 @@ const EveryoneReply = styled.div`
     &:hover{
         background: #031018;
     }
+
+    @media (max-width: 385px){
+        padding: 3px 5px;
+        margin-bottom: -10px;
+        width: 150px;
+    }
 `;
 
 const EveryoneReplyIcon = styled.div`
@@ -262,6 +378,10 @@ const EveryoneReplyText = styled.p`
     color: #1D9BF0;
     font-size: .9rem;
     font-weight: 600;
+
+    @media (max-width: 385px){
+        font-size: .8rem;
+    }
 `;
 
 const EmojiContainer = styled.div`
@@ -276,13 +396,19 @@ const EmojiContainer = styled.div`
         margin-top: 0;
         border-top: 1px solid #71767b6c;
   `}
+
+    @media (max-width: 385px){
+        margin-top: 10px;
+        height: 40px;
+    }
 `;
 
 const EmojiWrapper = styled.div`
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: -6px;
 `;
+
 const TweetButtonContainer = styled.div`
     height: 40px;
     width: 40%;
@@ -290,6 +416,18 @@ const TweetButtonContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-left: 110px;
+    
+    @media (max-width: 1015px) {
+        width: 34%;
+        justify-content: flex-end;
+        margin-left: 10px;
+    }
+
+    @media (max-width: 760px) {
+        width: 38%;
+        justify-content: flex-end;
+        margin-left: 10px;
+    }
 `;
 
 const TweetLengthContainer = styled.div`
@@ -303,6 +441,11 @@ const TweetLengthContainer = styled.div`
     ${props => props.active && css`
         display: flex;
   `}
+
+    @media (max-width: 730px) {
+       display: none;
+    }
+
 `;
 
 const TweetLength = styled.div`
@@ -312,19 +455,8 @@ const TweetLength = styled.div`
     height: 22px;
     border-radius: 50%;
     position: relative;
-
-    // &::after{
-    //     content: '';
-    //     position: absolute;
-    //     height: 100%;
-    //     width: 100%;
-    //     border-radius: 50%;
-    //     border: 2.5px solid #1D9BF0;
-    //     top: 50%;
-    //     left: 50%;
-    //     transform: translate(-50%, -50%);
-    // }
 `;
+
 const ShowTweetBox = styled.div`
     width: 22px;
     height: 22px;
@@ -362,6 +494,16 @@ const TweetButton = styled.button`
         opacity: 1;
         cursor: pointer;
   `}
+
+    @media (max-width: 385px){
+        height: 30px;
+        font-size: .8rem;
+    }
+
+    @media (max-width: 340px){
+        width: 60px;
+        height: 25px;
+    }
 `;
 
 const ShowTweetNums = styled.div`
@@ -376,12 +518,17 @@ const ShowTweetNums = styled.div`
     &:hover{
         background: #080808;
     }
+
+    @media (max-width: 385px){
+        height: 40px;
+        font-size: .9rem;
+    }
 `;
 const ShowTweetNumsText = styled.div`
     color: #1D9BF0;
 `;
 
-const MiddleSection = () => {
+const MiddleSection = ({handleHomeButtonClicked, bodyClicked}) => {
     const [audience, setAudience] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [tweetNums, setTweetNums] = useState(Math.floor(Math.random() * 901) + 100);
@@ -439,10 +586,10 @@ const MiddleSection = () => {
   return (
     <Container>
         <Navbar>
-            <PageTitle>
+            <PageTitle onClick ={handleHomeButtonClicked} >
                 Home
               </PageTitle>
-              <NavbarBottomSection>
+              <NavbarBottomSection  onClick = {bodyClicked}>
                   <ForYouWrapper>
                     <ForYou>
                         For you

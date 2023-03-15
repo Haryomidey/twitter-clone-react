@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import MyProfileImage from '../images/profileImage/My_profile.jpg';
 import { CommentIcon, DownloadIcon, Liked, LikeIcon, Retweeted, RetweetIcon, ViewsIcon } from '../TweetIcons';
 
-
-import { useState } from 'react';
-
 const CardComponent = styled.div`
   width: 100%;
   min-height: 100px;
@@ -14,28 +11,6 @@ const CardComponent = styled.div`
 
   &:hover{
     background: #080808;
-  }
-`;
-
-const TweetScource = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-left: 45px;
-  padding-top: 5px;
-`;
-
-const TweetSourceIcon = styled.svg`
-  width: 1rem;
-  fill: #71767B;
-`;
-
-const TweetSourceText = styled.p`
-  color: #71767B;
-  font-size: .9rem;
-
-  &:hover{
-    text-decoration: underline;
   }
 `;
 
@@ -52,6 +27,14 @@ const ProfileImageContainer = styled.div`
   width: 50px;
   height: 50px;
   margin-left: 15px;
+
+  @media (max-width: 450px){
+    margin-left: 5px;
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -71,7 +54,7 @@ const UserDetails = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  `;
+`;
   
   const UserName = styled.div`
   width: 50%;
@@ -87,6 +70,19 @@ const UserNameText = styled.p`
   &:hover{
     text-decoration: underline;
   }
+
+  @media (max-width: 450px){
+    font-size: .9rem;
+  }
+
+  @media (max-width: 405px){
+    font-size: .8rem;
+  }
+
+   @media (max-width: 305px){
+    font-size: .7rem;
+  }
+
 `;
 
 const Span = styled.span`
@@ -107,33 +103,78 @@ const UserHandle = styled.p`
   &:hover{
     text-decoration: underline;
   }
+
+  @media (max-width: 450px){
+    font-size: .8rem;
+  }
+
+  @media (max-width: 405px){
+    font-size: .7rem;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
 `;
 
 const Dot = styled.span`
   margin-top: -7px;
   color: #71767B;
-
 `;
 
 const TweetTime = styled.p`
   color: #71767B;
   margin-left: 5px;
+
+  @media (max-width: 450px){
+    font-size: .8rem;
+  }
+
+  @media (max-width: 405px){
+    margin-left: 2px;
+    font-size: .7rem;
+  }
+
 `;
 
 const ThreeDotsWrapper = styled.svg`
-  margin-right: 20px;
   width: 1.4rem;
   fill: #71767B;
+  margin-right: 20px;
+  z-index: 9999;
+
+  @media (max-width: 450px){
+    margin-right: 10px;
+    width: 1rem;
+  }
+
+  @media (max-width: 370px){
+    transform: rotate(90deg);
+  }
+
 `;
 
 const TweetContent = styled.p`
-  width: 96.8%;
+  width: 84.8%;
+  min-height: 30px;
   font-weight: 300;
   font-size: 1rem;
   line-height: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
   word-break: all;
+  word-wrap: break-word;
+  padding-right: 0;
+  margin-right: 0;
+
+  @media (max-width: 450px){
+    font-size: .9rem;
+    width: 94.8%
+  }
+
+  @media (max-width: 370px){
+    font-size: .9rem;
+    width: 92.8%;
+  }
 `;
 
 const TweetImageWrapper = styled.div`
@@ -141,6 +182,16 @@ const TweetImageWrapper = styled.div`
   margin-top: 10px;
   width: 97%;
   height: 100%;
+
+  @media (max-width: 450px){
+    width: 95%;
+    height: 30%;
+  }
+
+  @media (max-width: 370px){
+    width: 90%;
+  }
+
 `;
 
 const TweetActivity = styled.div`
@@ -151,7 +202,17 @@ const TweetActivity = styled.div`
   height: 40px;
   margin-top: 6px;
   margin-bottom: 6px;
+
+  @media (max-width: 371px){
+    width: 100%;
+    margin-left: -30px;
+  }
+
+  @media (max-width: 331px){
+    margin-left: -50px;
+  }
 `;
+
 
 const MyTweetCard = ({myTweet, setMyTweet}) => {
   const handleRetweet = (tweet) => {
@@ -203,13 +264,15 @@ const MyTweetCard = ({myTweet, setMyTweet}) => {
                     now
                   </TweetTime>
                 </UserName>
-                <ThreeDotsWrapper viewBox="0 0 24 24" >
-                  <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
-                </ThreeDotsWrapper>
+                {/* <ThreeDotsWrapper> */}
+                  <ThreeDotsWrapper viewBox="0 0 24 24" >
+                    <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+            </ThreeDotsWrapper>
+                {/* </ThreeDotsWrapper> */}
               </UserDetails>
-              <TweetContent>
-                {tweet.tweetContent}
-              </TweetContent>
+              {/* <TweetContentWrapper> */}
+                <TweetContent>{tweet.tweetContent}</TweetContent>
+              {/* </TweetContentWrapper> */}
               <TweetImageWrapper>
               </TweetImageWrapper>
               <TweetActivity>

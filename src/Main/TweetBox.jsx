@@ -35,6 +35,11 @@ const InputSection = styled.div`
     width: 45%;
     position: relative;
     border-radius: 15px;
+
+    @media (max-width: 1261px) {
+        // width: 55%;
+    }
+
 `;
 
 const ProfileImage = styled.img`
@@ -147,6 +152,10 @@ const TweetInput = styled.textarea`
     &::placeholder{
         font-size: 1.3rem;
     }
+
+    @media (max-width: 1261px) {
+        max-width: 84%;
+    }
 `;
 
 const EveryoneReply = styled.div`
@@ -162,6 +171,10 @@ const EveryoneReply = styled.div`
 
     &:hover{
         background: #031018;
+    }
+
+    @media (max-width: 1261px) {
+        margin-left: -80px;
     }
 `;
 
@@ -181,6 +194,12 @@ const EmojiContainer = styled.div`
     width: 96%;
     height: 60px;
     border-top: 1px solid #71767b6c;
+    
+    @media (max-width: 1261px) {
+        // border-top: 1px solid #71767b6c;
+        margin-left: -70px;
+        width: 50%;
+    }
 `;
 
 const EmojiWrapper = styled.div`
@@ -195,6 +214,10 @@ const TweetButtonContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-left: 110px;
+    
+    @media (max-width: 1261px) {
+        margin-left: 60px;
+    }
 `;
 
 const TweetLengthContainer = styled.div`
@@ -252,6 +275,10 @@ const TweetButton = styled.button`
         opacity: 1;
         cursor: pointer;
   `}
+
+    @media (max-width: 1261px) {
+        min-width: 80px;
+    }
 `;
 
 const CloseBox = styled.div`

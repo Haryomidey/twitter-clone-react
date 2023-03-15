@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { CommentIcon, DownloadIcon, Liked, LikeIcon, Retweeted, RetweetIcon, ViewsIcon } from '../TweetIcons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const CardComponent = styled.div`
   width: 100%;
@@ -20,6 +20,10 @@ const TweetScource = styled.div`
   gap: 15px;
   margin-left: 45px;
   padding-top: 5px;
+
+  @media (max-width: 450px){
+    margin-left: 20px;
+  }
 `;
 
 const TweetSourceIcon = styled.svg`
@@ -33,6 +37,10 @@ const TweetSourceText = styled.p`
 
   &:hover{
     text-decoration: underline;
+  }
+
+  @media (max-width: 450px){
+    font-size: .7rem;
   }
 `;
 
@@ -49,6 +57,14 @@ const ProfileImageContainer = styled.div`
   width: 50px;
   height: 50px;
   margin-left: 15px;
+
+  @media (max-width: 450px){
+    margin-left: 5px;
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -68,7 +84,7 @@ const UserDetails = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  `;
+`;
   
   const UserName = styled.div`
   width: 50%;
@@ -84,6 +100,19 @@ const UserNameText = styled.p`
   &:hover{
     text-decoration: underline;
   }
+
+  @media (max-width: 450px){
+    font-size: .9rem;
+  }
+
+  @media (max-width: 405px){
+    font-size: .8rem;
+  }
+
+   @media (max-width: 305px){
+    font-size: .7rem;
+  }
+
 `;
 
 const Span = styled.span`
@@ -104,33 +133,74 @@ const UserHandle = styled.p`
   &:hover{
     text-decoration: underline;
   }
+
+  @media (max-width: 450px){
+    font-size: .8rem;
+  }
+
+  @media (max-width: 405px){
+    font-size: .7rem;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
 `;
 
 const Dot = styled.span`
   margin-top: -7px;
   color: #71767B;
-
 `;
 
 const TweetTime = styled.p`
   color: #71767B;
   margin-left: 5px;
+
+  @media (max-width: 450px){
+    font-size: .8rem;
+  }
+
+  @media (max-width: 405px){
+    margin-left: 2px;
+    font-size: .7rem;
+  }
+
 `;
 
 const ThreeDotsWrapper = styled.svg`
-  margin-right: 20px;
   width: 1.4rem;
   fill: #71767B;
+  margin-right: 20px;
+
+  @media (max-width: 450px){
+    margin-right: 10px;
+    width: 1rem;
+  }
+
+  @media (max-width: 370px){
+    transform: rotate(90deg);
+  }
+
 `;
 
 const TweetContent = styled.p`
   width: 96.8%;
+  min-height: 30px;
   font-weight: 300;
   font-size: 1rem;
   line-height: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
   word-break: all;
+
+  @media (max-width: 450px){
+    font-size: .9rem;
+    width: 94.8%
+  }
+
+  @media (max-width: 370px){
+    font-size: .9rem;
+    width: 92.8%;
+  }
 `;
 
 const TweetImageWrapper = styled.div`
@@ -138,12 +208,23 @@ const TweetImageWrapper = styled.div`
   margin-top: 10px;
   width: 97%;
   height: 100%;
+
+  @media (max-width: 450px){
+    width: 95%;
+    height: 30%;
+  }
+
+  @media (max-width: 370px){
+    width: 90%;
+  }
+
 `;
 
 const TweetImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 20px;
+
 `;
 
 const TweetActivity = styled.div`
@@ -154,18 +235,37 @@ const TweetActivity = styled.div`
   height: 40px;
   margin-top: 6px;
   margin-bottom: 6px;
+
+  @media (max-width: 371px){
+    width: 100%;
+    margin-left: -30px;
+  }
+
+  @media (max-width: 331px){
+    margin-left: -50px;
+  }
 `;
 
 const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHandle, tweetTime, tweetContent, tweetImage, tweetComments, tweetRetweets, tweetLikes, tweetViews}) => {
 
   const [isRetweeted, setIsRetweeted] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [scrollWidth, setScrollWidth] = useState(window.innerWidth);
 
   const [retweetCount, setRetweetCount] = useState(tweetRetweets);
   const [likedCount, setLikedCount] = useState(tweetLikes);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScrollWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+
+  }, [scrollWidth]);
+
   const handleRetweet = () => {
     if (isRetweeted) {
-      setRetweetCount(prev => prev - 1)
+      setRetweetCount(prev => prev - 1);
       setIsRetweeted(false);
     }
     else {
@@ -178,11 +278,11 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
     if (isLiked) {
       setIsLiked(false);
       
-      setLikedCount(prev => prev - 1)
+      setLikedCount(prev => prev - 1);
     }
     else {
       setIsLiked(true);
-      setLikedCount(prev => prev + 1)
+      setLikedCount(prev => prev + 1);
     }
   }
 
@@ -214,7 +314,7 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
               verified
               </Span> : ''}
               <UserHandle>
-                {userHandle}
+                {scrollWidth < 371 ? `${userHandle.slice(0, 5)}...` : userHandle}
               </UserHandle>
               <Dot>.</Dot>
               <TweetTime>
@@ -250,7 +350,6 @@ const TweetCardEmpty = ({id, tweetSource, userImage, userName, verified, userHan
             </div>
             <div className='share_wrapper'>
               <DownloadIcon />
-              {/* <p className = "share_value"></p> */}
             </div>
           </TweetActivity>
         </ContentSection>
